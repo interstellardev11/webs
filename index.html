@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ethereum Glamsterdam</title>
-    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>Ξ</text></svg>">
+    <link rel="icon" type="image/jpeg" href="images/mainlogo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -75,22 +75,21 @@ body {
     width: 120px;
     height: 120px;
     border: 3px solid var(--glass-border);
-    border-radius: 20px;
+    border-radius: 50%; /* Circular to match logo */
     display: flex;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(20px);
-    background: var(--glass-white);
+    background: var(--glass-white) url('images/mainlogo.jpg') no-repeat center center;
+    background-size: cover;
     animation: pulse 2s infinite ease-in-out;
     box-shadow: 0 0 40px rgba(0, 245, 255, 0.3);
 }
 
 #loading-screen .loading-logo::before {
-    content: 'Ξ';
-    font-size: 60px;
-    color: var(--neon-cyan);
-    text-shadow: 0 0 20px var(--neon-cyan);
+    content: ''; /* Removed the Ξ symbol */
 }
+
 
 @keyframes pulse {
     0% { transform: scale(0.95); box-shadow: 0 0 40px rgba(0, 245, 255, 0.3); }
@@ -147,7 +146,6 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    /* Animation re-enabled */
 }
 
 #stars1 {
@@ -287,17 +285,22 @@ main {
     width: 50px;
     height: 50px;
     border: 2px solid var(--neon-cyan);
-    border-radius: 12px;
+    border-radius: 50%; /* Make it circular */
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--glass-white);
     backdrop-filter: blur(20px);
-    font-size: 24px;
-    color: var(--neon-cyan);
-    text-shadow: 0 0 10px var(--neon-cyan);
     transition: all 0.3s ease;
+    overflow: hidden;
 }
+
+.header__logo-symbol img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 .header__logo-symbol:hover {
     transform: scale(1.1);
@@ -433,30 +436,16 @@ main {
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
-    padding: 0;
+    padding: 120px 0;
 }
 
-.hero__ethereum-bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1200px;
-    height: 1200px;
-    opacity: 0.03;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* Full-width hero image container */
 .hero__image-wrapper {
-    position: relative;
-    width: 1920px;
-    height: 70vh;
-    min-height: 600px;
+    position: absolute;
+    top: 0;
     left: 0;
-    right: 0;
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .hero__bg-image {
@@ -464,7 +453,7 @@ main {
     height: 100%;
     object-fit: cover;
     display: block;
-    filter: brightness(0.7) contrast(1.1);
+    filter: brightness(0.6) contrast(1.1);
 }
 
 .hero__overlay {
@@ -473,21 +462,19 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(180deg,
-        rgba(26, 15, 58, 0.3) 0%,
-        rgba(26, 15, 58, 0.4) 50%,
+    background: linear-gradient(180deg, 
+        rgba(26, 15, 58, 0.3) 0%, 
+        rgba(26, 15, 58, 0.4) 50%, 
         rgba(26, 15, 58, 0.8) 100%);
 }
 
-/* Title positioned at bottom of hero image - CENTERED */
-.hero__title-wrapper {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+.hero__content-wrapper {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    z-index: 10;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero__title {
@@ -508,11 +495,10 @@ main {
     font-size: 1.4rem;
     font-weight: 400;
     color: var(--text-secondary);
-    margin: 0 auto;
+    margin: 0 auto 30px auto;
     line-height: 1.6;
     max-width: 650px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    text-align: center;
 }
 
 @keyframes title-glow {
@@ -520,43 +506,19 @@ main {
     100% { filter: drop-shadow(0 0 40px rgba(192, 132, 252, 0.8)); }
 }
 
-/* Social Icons Tab Section - REMOVED JOIN THE REVOLUTION TEXT */
-.hero__social-tab {
-    position: relative;
-    width: 1920px;
-    padding: 30px 0;
-    background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, rgba(192, 132, 252, 0.1) 100%);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid var(--glass-border);
-    border-bottom: 1px solid var(--glass-border);
-    z-index: 5;
-}
-
-.hero__social-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-.hero__social-bar {
+.hero__socials {
     display: flex;
     gap: 24px;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
 }
 
 .social-icon {
     width: 56px;
     height: 56px;
-    border-radius: 50%; /* Make icon circular */
+    border-radius: 50%;
     overflow: hidden;
     display: block;
-    background: transparent; /* Remove background box */
-    border: none; /* Remove border */
+    background: transparent;
+    border: none;
     transition: all 0.3s ease;
     text-decoration: none;
     position: relative;
@@ -564,7 +526,7 @@ main {
 
 .social-icon:hover {
     transform: translateY(-5px) scale(1.1);
-    filter: drop-shadow(0 8px 20px rgba(0, 245, 255, 0.4)); /* Use filter for shadow on transparent bg */
+    filter: drop-shadow(0 8px 20px rgba(0, 245, 255, 0.4));
 }
 
 .social-icon img {
@@ -574,7 +536,7 @@ main {
     display: block;
     position: relative;
     z-index: 1;
-    border-radius: 50%; /* Ensure image is circular */
+    border-radius: 50%;
 }
 
 /* --- About Section --- */
@@ -712,6 +674,21 @@ main {
     color: var(--text-primary);
 }
 
+/* --- Section Divider --- */
+.section-divider {
+    width: 0;
+    height: 2px;
+    margin: 120px auto;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-lilac));
+    box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-lilac);
+    border-radius: 1px;
+    transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.section-divider.is-visible {
+    width: 150px;
+}
+
 /* --- Tokenomics Section --- */
 .tokenomics {
     padding: 140px 0;
@@ -838,6 +815,68 @@ main {
     font-weight: 500;
 }
 
+/* Contract Address Section */
+.tokenomics__address-wrapper {
+    margin-top: 80px;
+    padding: 24px 32px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.tokenomics__address-wrapper .address-label {
+    font-family: var(--font-headline);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--neon-lilac);
+    display: block;
+    margin-bottom: 16px;
+}
+
+.tokenomics__address-wrapper .address-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 12px 20px;
+}
+
+.tokenomics__address-wrapper .address-field span {
+    font-family: var(--font-headline);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    word-break: break-all; /* For long addresses on small screens */
+}
+
+.tokenomics__address-wrapper .copy-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--neon-cyan);
+    font-family: var(--font-headline);
+    font-size: 0.9rem;
+    padding: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tokenomics__address-wrapper .copy-btn:hover {
+    filter: brightness(1.2);
+}
+
+.tokenomics__address-wrapper .copy-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+
 /* --- Footer --- */
 .footer {
     padding: 80px 0 40px 0;
@@ -863,16 +902,20 @@ main {
     width: 50px;
     height: 50px;
     border: 2px solid var(--neon-lilac);
-    border-radius: 12px;
+    border-radius: 50%; /* Circular */
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--glass-white);
     backdrop-filter: blur(20px);
-    font-size: 24px;
-    color: var(--neon-lilac);
-    text-shadow: 0 0 10px var(--neon-lilac);
     transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.footer__logo-symbol img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .footer__logo-symbol:hover {
@@ -1046,10 +1089,6 @@ main {
         gap: 20px;
     }
 
-    .hero__social-bar {
-        gap: 16px;
-    }
-
     .social-icon {
         width: 48px;
         height: 48px;
@@ -1081,7 +1120,9 @@ main {
                 <header class="header">
                     <div class="container header__container">
                         <a href="#" class="header__logo">
-                            <div class="header__logo-symbol">Ξ</div>
+                            <div class="header__logo-symbol">
+                                <img src="images/mainlogo.jpg" alt="Glamsterdam Logo">
+                            </div>
                             <span class="header__logo-text">Glamsterdam</span>
                         </a>
                         <nav class="header__nav">
@@ -1094,41 +1135,30 @@ main {
                 <main>
                     <!-- Hero Section -->
                     <section class="hero">
-                        <!-- Ethereum Logo Background -->
-                        <img src="images/ethereum.svg" alt="" class="hero__ethereum-bg">
-
-                        <!-- Full-width Hero Background Image -->
                         <div class="hero__image-wrapper">
                             <img src="images/herosection.png" alt="Glamsterdam" class="hero__bg-image">
                             <div class="hero__overlay"></div>
-
-                            <!-- Title positioned at bottom of hero image - NOW CENTERED -->
-                            <div class="hero__title-wrapper">
-                                <h1 class="hero__title">Ethereum Glamsterdam</h1>
-                                <p class="hero__subtitle">The upgrade that redefines scalability, security, and decentralization.</p>
-                            </div>
                         </div>
-
-                        <!-- Social Icons Tab Section - REMOVED JOIN THE REVOLUTION TEXT -->
-                        <div class="hero__social-tab">
-                            <div class="hero__social-content">
-                                <div class="hero__social-bar">
-                                    <a href="#" class="social-icon" target="_blank" title="Dexscreener">
-                                        <img src="images/dexscreener.jpg" alt="Dexscreener">
-                                    </a>
-                                    <a href="#" class="social-icon" target="_blank" title="Dextools">
-                                        <img src="images/dextools.jpg" alt="Dextools">
-                                    </a>
-                                    <a href="#" class="social-icon" target="_blank" title="Uniswap">
-                                        <img src="images/uniswap.jpg" alt="Uniswap">
-                                    </a>
-                                    <a href="#" class="social-icon" target="_blank" title="X (Twitter)">
-                                        <img src="images/x.jpg" alt="X">
-                                    </a>
-                                    <a href="#" class="social-icon" target="_blank" title="Telegram">
-                                        <img src="images/telegram.jpg" alt="Telegram">
-                                    </a>
-                                </div>
+                        <div class="hero__content-wrapper container">
+                            <h1 class="hero__title animate-on-scroll">Glamsterdam</h1>
+                            <p class="hero__subtitle animate-on-scroll">The upgrade that redefines scalability, security, and decentralization.</p>
+                            <div class="hero__socials animate-on-scroll">
+                                <!-- REPLACE # WITH YOUR ACTUAL SOCIAL LINKS -->
+                                <a href="www.dexscreener.com" class="social-icon" target="_blank" title="Dexscreener">
+                                    <img src="images/dexscreener.jpg" alt="Dexscreener">
+                                </a>
+                                <a href="www.dexscreener.com" class="social-icon" target="_blank" title="Dextools">
+                                    <img src="images/dextools.jpg" alt="Dextools">
+                                </a>
+                                <a href="www.dexscreener.com" class="social-icon" target="_blank" title="Uniswap">
+                                    <img src="images/uniswap.jpg" alt="Uniswap">
+                                </a>
+                                <a href="https://x.com/GlamsterdamERC" class="social-icon" target="_blank" title="X (Twitter)">
+                                    <img src="images/x.jpg" alt="X">
+                                </a>
+                                <a href="https://t.me/GlamsterdamETH" class="social-icon" target="_blank" title="Telegram">
+                                    <img src="images/telegram.jpg" alt="Telegram">
+                                </a>
                             </div>
                         </div>
                     </section>
@@ -1136,7 +1166,7 @@ main {
                     <!-- About Section -->
                     <section id="about" class="about animate-on-scroll">
                         <div class="container">
-                            <h2 class="section-title">What is Glamsterdam?</h2>
+                            <h2 class="section-title">About Glamsterdam</h2>
                             <div class="about__content">
                                 <div class="about__text">
                                     <p class="about__description">
@@ -1164,9 +1194,9 @@ main {
                                             <span>Ultra-Fast Transaction Processing</span>
                                         </div>
                                     </div>
-                                    <!-- CTA Button moved to About Section -->
                                     <div class="about__cta">
-                                        <a href="#tokenomics" class="btn btn-primary">Discover the Future</a>
+                                        <!-- REPLACE # WITH YOUR ACTUAL LINK -->
+                                        <a href="https://etherworld.co/2025/08/26/expected-eips-in-glamsterdam-upgrade-consensus-layer/" class="btn btn-primary" target="_blank">Discover the Future</a>
                                     </div>
                                 </div>
                                 <div class="about__visual">
@@ -1186,6 +1216,9 @@ main {
                         </div>
                     </section>
 
+                    <!-- Section Divider -->
+                    <div class="section-divider animate-on-scroll"></div>
+
                     <!-- Tokenomics Section -->
                     <section id="tokenomics" class="tokenomics animate-on-scroll">
                         <div class="container">
@@ -1193,21 +1226,29 @@ main {
 
                             <div class="tokenomics__grid">
                                 <div class="tokenomics__card glass-panel">
-                                    <div class="tokenomics__card-title">Total Supply</div>
-                                    <div class="tokenomics__card-value">100M</div>
-                                    <div class="tokenomics__card-description">Fixed maximum supply with zero inflation. No additional tokens can ever be minted, ensuring scarcity and value preservation.</div>
+                                    <div class="tokenomics__card-title">Tax</div>
+                                    <div class="tokenomics__card-value">0%</div>
                                 </div>
 
                                 <div class="tokenomics__card glass-panel">
                                     <div class="tokenomics__card-title">Ownership</div>
                                     <div class="tokenomics__card-value">Renounced</div>
-                                    <div class="tokenomics__card-description">Contract ownership permanently renounced for ultimate decentralization. The community now has full control over the project's future.</div>
                                 </div>
 
                                 <div class="tokenomics__card glass-panel">
                                     <div class="tokenomics__card-title">Liquidity</div>
                                     <div class="tokenomics__card-value">Burned</div>
-                                    <div class="tokenomics__card-description">All liquidity provider tokens permanently burned to ensure price stability and prevent rug pulls. Your investment is protected.</div>
+                                </div>
+                            </div>
+
+                            <div class="tokenomics__address-wrapper glass-panel">
+                                <span class="address-label">Contract Address</span>
+                                <div class="address-field">
+                                    <span id="contractAddress">0x0000000000000000000000000000000000000000</span>
+                                    <button id="copyButton" class="copy-btn" title="Copy Address">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                                        <span id="copyButtonText">Copy</span>
+                                    </button>
                                 </div>
                             </div>
 
@@ -1227,45 +1268,39 @@ main {
                 <footer class="footer">
                     <div class="container footer__container">
                         <a href="#" class="footer__logo">
-                            <div class="footer__logo-symbol">Ξ</div>
+                            <div class="footer__logo-symbol">
+                                <img src="images/mainlogo.jpg" alt="Glamsterdam Logo">
+                            </div>
                             <span class="footer__logo-text">Glamsterdam</span>
                         </a>
 
                         <div class="footer__social-section">
-                            <h4 class="footer__social-title">Connect With Us</h4>
                             <div class="footer__social-bar">
-                                <a href="#" class="social-icon" target="_blank" title="Dexscreener">
+                                <!-- REPLACE # WITH YOUR ACTUAL SOCIAL LINKS -->
+                                <a href="www.dexscreener.com" class="social-icon" target="_blank" title="Dexscreener">
                                     <img src="images/dexscreener.jpg" alt="Dexscreener">
                                 </a>
-                                <a href="#" class="social-icon" target="_blank" title="Dextools">
+                                <a href="www.dexscreener.com" class="social-icon" target="_blank" title="Dextools">
                                     <img src="images/dextools.jpg" alt="Dextools">
                                 </a>
-                                <a href="#" class="social-icon" target="_blank" title="Uniswap">
+                                <a href="www.dexscreener.com" class="social-icon" target="_blank" title="Uniswap">
                                     <img src="images/uniswap.jpg" alt="Uniswap">
                                 </a>
-                                <a href="#" class="social-icon" target="_blank" title="X (Twitter)">
+                                <a href="https://x.com/GlamsterdamERC" class="social-icon" target="_blank" title="X (Twitter)">
                                     <img src="images/x.jpg" alt="X">
                                 </a>
-                                <a href="#" class="social-icon" target="_blank" title="Telegram">
+                                <a href="https://t.me/GlamsterdamETH" class="social-icon" target="_blank" title="Telegram">
                                     <img src="images/telegram.jpg" alt="Telegram">
                                 </a>
                             </div>
                             <a href="mailto:hello@glamsterdam.eth" class="footer__email">
                                 <div class="footer__email-icon">@</div>
-                                hello@glamsterdam.eth
+                                Glamsterdam@proton.me
                             </a>
                         </div>
 
-                        <div class="footer__links">
-                            <a href="#" class="footer__link">Whitepaper</a>
-                            <a href="#" class="footer__link">Documentation</a>
-                            <a href="#" class="footer__link">Community</a>
-                            <a href="#" class="footer__link">Support</a>
-                            <a href="#" class="footer__link">Roadmap</a>
-                        </div>
-
                         <div class="footer__copyright">
-                            © 2025 Ethereum Glamsterdam. Building the cosmic future of blockchain technology.
+                            © 2025 Ethereum Glamsterdam. 
                         </div>
                     </div>
                 </footer>
@@ -1341,16 +1376,17 @@ main {
 
             // --- Enhanced Scroll Animation Logic ---
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
+                entries.forEach((entry) => {
                     if (entry.isIntersecting) {
+                        const delay = (entry.target.dataset.delay || 0) * 100;
                         setTimeout(() => {
                             entry.target.classList.add('is-visible');
-                        }, index * 100);
+                        }, delay);
                     }
                 });
             }, {
                 root: scrollContainer,
-                threshold: 0.15,
+                threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             });
 
@@ -1403,6 +1439,29 @@ main {
 
                 setInterval(createParticle, 500);
             }
+            
+            // --- Contract Address Copy ---
+            const copyButton = document.getElementById('copyButton');
+            const copyButtonText = document.getElementById('copyButtonText');
+            const contractAddress = document.getElementById('contractAddress');
+
+            if (copyButton && contractAddress && copyButtonText) {
+                copyButton.addEventListener('click', () => {
+                    navigator.clipboard.writeText(contractAddress.innerText).then(() => {
+                        copyButtonText.innerText = 'Copied!';
+                        copyButton.style.color = '#00ff7f'; // A green success color
+                        
+                        setTimeout(() => {
+                           copyButtonText.innerText = 'Copy';
+                           copyButton.style.color = 'var(--neon-cyan)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                        copyButtonText.innerText = 'Error';
+                    });
+                });
+            }
+
 
             // --- Enhanced Social Icon Interactions ---
             document.querySelectorAll('.social-icon').forEach(icon => {
